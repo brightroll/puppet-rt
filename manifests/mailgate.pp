@@ -4,8 +4,8 @@ class rt::mailgate (
      ) {
     include rt::params
     #
-    package { "rt-mailgate":
-        name    => $rt::params::rt_mailgate,
+    package { 'rt-mailgate':
         ensure  => $ensure,
+        name    => $rt::params::rt_mailgate,
     }
 }

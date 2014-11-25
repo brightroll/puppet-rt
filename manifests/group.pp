@@ -7,7 +7,7 @@
 #
 define rt::group (
     $ensure         = present,
-    $description    = "",
+    $description    = '',
     ) {
     include rt
     include rt::params
@@ -18,6 +18,6 @@ define rt::group (
     exec { "rt_group_${name}":
         command => "rt create -t groups set name=\"${name}\" description=\"${description}\"",
         unless  => "rt show -t groups \"${name}\" | grep ^Name: > /dev/null",
-        require => Class["rt::tool"]
+        require => Class['rt::tool']
     }
 }

@@ -16,20 +16,20 @@ class rt (
 
     #
     case $dbtype {
-        'mysql':    { $db_pkg = "$rt::params::rt_db_mysql" }
-        'oracle':   { $db_pkg = "$rt::params::rt_db_oracle" }
-        'postgres': { $db_pkg = "$rt::params::rt_db_postgres" }
-        'sqlite':   { $db_pkg = "$rt::params::rt_db_sqlite" }
-        default:    { fail("Unsupported request-tracker database package, $db, for $::osfamily") }
+        'mysql':    { $db_pkg = $::rt::params::rt_db_mysql }
+        'oracle':   { $db_pkg = $::rt::params::rt_db_oracle }
+        'postgres': { $db_pkg = $::rt::params::rt_db_postgres }
+        'sqlite':   { $db_pkg = $::rt::params::rt_db_sqlite }
+        default:    { fail("Unsupported request-tracker database package, ${dbtype}, for ${::osfamily}") }
     }
     #
     package { "rt":
+        ensure  => present,
         name    => "$rt::params::rt_name",
-        ensure  => present
     }
     package { "rt-db":
+        ensure  => present,
         name    => $db_pkg,
-        ensure  => present
     }
     #
     file { "rt_dir":

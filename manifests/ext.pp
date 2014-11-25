@@ -10,7 +10,7 @@ define rt::ext (
     $ext_package  = $ext_packages[$ext] # 2.6 compatibility hack
     if $package {
         $package_REAL = $package
-    } elsif "$ext_package" {
+    } elsif $ext_package {
         $package_REAL = $ext_package
     }
     if $package_REAL {
